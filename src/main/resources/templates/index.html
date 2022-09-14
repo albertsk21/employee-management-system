@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Employee Management System</title>
+
+    <style>
+
+        .action-button{
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .table-dark{
+            text-align: center;
+        }
+
+        tbody{
+            text-align: center;
+        }
+
+
+        h1{
+            padding: 20px 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/}">Employee Management System</a>
+            </li>
+           <li class="nav-item">
+              <a class="nav-link" th:href="@{/create}">Create Employee</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/search}">Search Employees </a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+
+
+ 
+    <main>
+        <div class="container  container-sm">
+
+        
+                <div class="row">
+
+                    <h1>Employees</h1>
+
+                </div>
+               
+
+          
+            <table class="table">
+                <thead class="table-dark table-bordered table-striped">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+         
+    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="employee : ${employees}" >
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.firstName}">  </td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.department}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td>
+                        <div class="action-button">
+                            <a class="btn btn-primary" th:href="@{/edit/{id}(id =${employee.id})}">Update</a>
+                            <a class="btn btn-danger" th:href= "@{/{id}(id=${employee.id})}" >Delete</a>
+                        </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+        </div>
+    
+    </main>
+  
+ 
+</body>
+</html>
